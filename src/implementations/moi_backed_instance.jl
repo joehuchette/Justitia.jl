@@ -2,7 +2,7 @@ abstract type AbstractMOIBackedInstance <: AbstractInstance end
 
 function get_moi_model end
 
-struct SimpleMOIBackedInstance{T <: MOI.ModelLike} <: AbstractInstance
+struct SimpleMOIBackedInstance{T<:MOI.ModelLike} <: AbstractInstance
     model::T
 end
 

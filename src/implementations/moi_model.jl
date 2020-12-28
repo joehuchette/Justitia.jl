@@ -3,7 +3,7 @@ struct MOIModel{T<:MOI.AbstractOptimizer} <: AbstractModel
 end
 
 function optimize!(model::MOIModel)
-    optimize!(model.opt)
+    MOI.optimize!(model.opt)
     return nothing
 end
 
