@@ -4,4 +4,5 @@ authors = ["Joey Huchette <joehuchette@gmail.com>"]
 version = "0.1.0"
 
 [deps]
+GZip = "92fee26a-97fe-5a0c-ad85-20a5f3185b63"
 MathOptInterface = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
