@@ -1,7 +1,10 @@
 struct CSVRecord <: AbstractResultTable
     fp::IOStream
 
-    function CSVRecord(filename::String, headers::Union{Nothing,Vector{String}}=nothing)
+    function CSVRecord(
+        filename::String,
+        headers::Union{Nothing,Vector{String}} = nothing,
+    )
         fp = open(filename, "w+")
         if headers !== nothing
             write(fp, join(headers, ","))

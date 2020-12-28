@@ -22,10 +22,19 @@ const _MILP_CSV_RESULT_FIELDS = [
 
 function CSVRecord(filename::String, ::Type{MILPResult})
     # Don't write feasible solution to CSV
-    return CSVRecord(filename, [string(field) for field in _MILP_CSV_RESULT_FIELDS])
+    return CSVRecord(
+        filename,
+        [string(field) for field in _MILP_CSV_RESULT_FIELDS],
+    )
 end
 
 function record_result!(table::CSVRecord, result::MILPResult)
-    println(table.fp, join([getfield(result, field) for field in _MILP_CSV_RESULT_FIELDS], ","))
-    flush(table.fp)
+    println(
+        table.fp,
+        join(
+            [getfield(result, field) for field in _MILP_CSV_RESULT_FIELDS],
+            ",",
+        ),
+    )
+    return flush(table.fp)
 end

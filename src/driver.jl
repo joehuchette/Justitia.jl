@@ -1,4 +1,9 @@
-function run_experiment!(record_table::AbstractResultTable, instances::Vector, approaches::Vector, config::Dict{String,Any}=Dict())
+function run_experiment!(
+    record_table::AbstractResultTable,
+    instances::Vector,
+    approaches::Vector,
+    config::Dict{String,Any} = Dict(),
+)
     for instance in instances
         prep_instance!(instance)
         for approach in approaches
