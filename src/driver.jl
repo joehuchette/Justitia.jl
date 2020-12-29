@@ -16,7 +16,7 @@ function run_experiments!(
     record_table::AbstractResultTable,
     instances::Vector,
     approaches::Vector,
-    config::Dict{String,Any}=Dict(),
+    config::Dict{String,Any} = Dict(),
 )
     for instance in instances
         prep_instance!(instance)

@@ -13,7 +13,7 @@ struct CSVRecord <: AbstractResultTable
 
     function CSVRecord(
         filename::String,
-        headers::Union{Nothing,Vector{String}}=nothing,
+        headers::Union{Nothing,Vector{String}} = nothing,
     )
         fp = open(filename, "w+")
         if headers !== nothing

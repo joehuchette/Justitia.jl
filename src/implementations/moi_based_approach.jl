@@ -22,27 +22,31 @@ implemented:
         config::Dict{String,Any} = Dict{String,Any}(),
     ) where {T <: MathOptInterface.AbstractOptimizer}
 """
-struct MOIBasedApproach{T <: MOI.AbstractOptimizer} <: AbstractApproach
+struct MOIBasedApproach{T<:MOI.AbstractOptimizer} <: AbstractApproach
     optimizer_factory::Union{Nothing,Function}
 end
-MOIBasedApproach{T}() where {T <: MOI.AbstractOptimizer} = MOIBasedApproach{T}(nothing)
+function MOIBasedApproach{T}() where {T<:MOI.AbstractOptimizer}
+    return MOIBasedApproach{T}(nothing)
+end
 
-_get_factory(::Nothing, ::Type{T}) where {T <: MOI.AbstractOptimizer} = T
-_get_factory(f::Function, ::Type{T}) where {T <: MOI.AbstractOptimizer} = f
+_get_factory(::Nothing, ::Type{T}) where {T<:MOI.AbstractOptimizer} = T
+_get_factory(f::Function, ::Type{T}) where {T<:MOI.AbstractOptimizer} = f
 
-function get_factory(approach::MOIBasedApproach{T}) where {T <: MOI.AbstractOptimizer}
+function get_factory(
+    approach::MOIBasedApproach{T},
+) where {T<:MOI.AbstractOptimizer}
     return _get_factory(approach.optimizer_factory, T)
 end
 
 function build_model(
     approach::MOIBasedApproach{T},
     inst::AbstractMOIBackedInstance,
-    config::Dict{String,Any}=Dict{String,Any}(),
-) where {T <: MOI.AbstractOptimizer}
+    config::Dict{String,Any} = Dict{String,Any}(),
+) where {T<:MOI.AbstractOptimizer}
     factory = get_factory(approach)
     # factory = () -> approach.optimizer_factory(inst, config)
     model = MOI.instantiate(factory)
     @assert model isa T
-    MOI.copy_to(model, get_moi_model(inst), copy_names=false)
+    MOI.copy_to(model, get_moi_model(inst), copy_names = false)
     return MOIModel(model)
 end

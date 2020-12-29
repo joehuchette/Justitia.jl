@@ -19,7 +19,7 @@ model is stored in a field.
         model::T
     end
 """
-struct SimpleMOIBackedInstance{T <: MOI.ModelLike} <: AbstractInstance
+struct SimpleMOIBackedInstance{T<:MOI.ModelLike} <: AbstractInstance
     model::T
 end
 

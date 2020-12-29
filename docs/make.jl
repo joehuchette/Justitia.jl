@@ -2,14 +2,14 @@ using Justitia
 using Documenter
 
 makedocs(;
-    sitename="Justitia.jl",
-    authors="Joey Huchette",
-    format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", nothing) == "true",
-        assets=String[],
+    sitename = "Justitia.jl",
+    authors = "Joey Huchette",
+    format = Documenter.HTML(;
+        prettyurls = get(ENV, "CI", nothing) == "true",
+        assets = String[],
     ),
-    modules=[Justitia],
-    pages=[
+    modules = [Justitia],
+    pages = [
         "Home" => "index.md",
         "User guide" => [
             "Interface" => "manual/interface.md",
@@ -18,7 +18,4 @@ makedocs(;
     ],
 )
 
-deploydocs(
-    repo="github.com/joehuchette/Justitia.jl.git",
-    devbranch="main",
-)
+deploydocs(repo = "github.com/joehuchette/Justitia.jl.git", devbranch = "main")
