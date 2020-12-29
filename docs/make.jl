@@ -2,16 +2,16 @@ using Justitia
 using Documenter
 
 makedocs(;
-    modules = [Justitia],
-    authors = "Joey Huchette",
-    repo = "https://github.com/joehuchette/Justitia.jl/blob/{commit}{path}#L{line}",
-    sitename = "Justitia.jl",
-    format = Documenter.HTML(;
-        prettyurls = get(ENV, "CI", "false") == "true",
-        canonical = "https://joehuchette.github.io/Justitia.jl",
-        assets = String[],
+    modules=[Justitia],
+    authors="Joey Huchette",
+    repo="https://github.com/joehuchette/Justitia.jl/blob/{commit}{path}#L{line}",
+    sitename="Justitia.jl",
+    format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
+        canonical="https://joehuchette.github.io/Justitia.jl",
+        assets=String[],
     ),
-    pages = [
+    pages=[
         "Home" => "index.md",
         "User guide" => [
             "Interface" => "manual/interface.md",
@@ -21,4 +21,6 @@ makedocs(;
     ],
 )
 
-deploydocs(; repo = "github.com/joehuchette/Justitia.jl")
+deploydocs(
+    repo="github.com/joehuchette/Justitia.jl.git",
+)
