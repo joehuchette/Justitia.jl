@@ -2,15 +2,14 @@ using Justitia
 using Documenter
 
 makedocs(;
-    modules=[Justitia],
-    authors="Joey Huchette",
-    repo="https://github.com/joehuchette/Justitia.jl/blob/{commit}{path}#L{line}",
     sitename="Justitia.jl",
+    authors="Joey Huchette",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://joehuchette.github.io/Justitia.jl",
         assets=String[],
     ),
+    modules=[Justitia],
     pages=[
         "Home" => "index.md",
         "User guide" => [
