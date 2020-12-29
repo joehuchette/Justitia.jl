@@ -1,6 +1,8 @@
 # Justitia.jl
 A flexible framework for benchmarking optimization algorithms.
 
+This library was originally built to evaluate the relative performance of mixed-integer programming formulations an a family of instances.
+
 | **Documentation** |
 |:-----------------:|
 | [![][docs-stable-img]][docs-stable-url] [![][docs-dev-img]][docs-dev-url] |
