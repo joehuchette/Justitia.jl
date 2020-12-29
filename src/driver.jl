@@ -1,4 +1,18 @@
-function run_experiment!(
+"""
+The entrypoint to run a set of experiments.
+
+    function run_experiments!(
+        record_table::AbstractResultTable,
+        instances::Vector,
+        approaches::Vector,
+        config::Dict{String,Any}=Dict(),
+    )
+
+This will consider every pair of `AbstractInstance` from `instances` with
+`AbstractApproach` from `approaches`, build the corresponding `AbstractModel`,
+solve it, and record the resulting `AbstractResult` in `record_table`.
+"""
+function run_experiments!(
     record_table::AbstractResultTable,
     instances::Vector,
     approaches::Vector,

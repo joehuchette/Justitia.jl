@@ -25,3 +25,9 @@ optimize!
 tear_down
 record_result!
 ```
+
+## Entrypoint
+
+```@docs
+run_experiments!
+```
