@@ -14,6 +14,4 @@ include("implementations/miplib_instance.jl")
 
 include("driver.jl")
 
-include("analysis.jl")
-
 end # module
