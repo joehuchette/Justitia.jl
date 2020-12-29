@@ -1,4 +1,18 @@
-struct MOIModel{T<:MOI.AbstractOptimizer} <: AbstractModel
+"""
+A "simple" model that merely wraps around an underlying `MathOptInterface`
+model.
+
+    struct MOIModel{T <: MOI.AbstractOptimizer} <: AbstractModel
+        opt::T
+    end
+
+Some pieces of the [functional interface](@ref functional_interface) are
+implemented:
+
+    optimize!(model::MOIModel)
+    tear_down(model::MOIModel, ::Type{MILPResult})
+"""
+struct MOIModel{T <: MOI.AbstractOptimizer} <: AbstractModel
     opt::T
 end
 
@@ -21,13 +35,13 @@ function tear_down(model::MOIModel, ::Type{MILPResult})
         end
     )
     return MILPResult(
-        termination_status = MOI.get(model, MOI.TerminationStatus()),
-        primal_status = primal_status,
+        termination_status=MOI.get(model, MOI.TerminationStatus()),
+        primal_status=primal_status,
         feas_point,
-        primal_bound = MOI.get(model, MOI.ObjectiveValue()),
-        dual_bound = MOI.get(model, MOI.ObjectiveBound()),
-        solve_time_sec = MOI.get(model, MOI.SolveTimeSec()),
-        node_count = MOI.get(model, MOI.NodeCount()),
-        simplex_iters = MOI.get(model, MOI.SimplexIterations()),
+        primal_bound=MOI.get(model, MOI.ObjectiveValue()),
+        dual_bound=MOI.get(model, MOI.ObjectiveBound()),
+        solve_time_sec=MOI.get(model, MOI.SolveTimeSec()),
+        node_count=MOI.get(model, MOI.NodeCount()),
+        simplex_iters=MOI.get(model, MOI.SimplexIterations()),
     )
 end
