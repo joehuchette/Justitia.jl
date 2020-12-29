@@ -23,4 +23,5 @@ makedocs(;
 
 deploydocs(
     repo="github.com/joehuchette/Justitia.jl.git",
+    devbranch = "main",
 )
