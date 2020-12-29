@@ -5,10 +5,11 @@ makedocs(;
     sitename="Justitia.jl",
     authors="Joey Huchette",
     format=Documenter.HTML(;
-        prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://joehuchette.github.io/Justitia.jl",
+        prettyurls=get(ENV, "CI", nothing) == "true",
+        # canonical="https://joehuchette.github.io/Justitia.jl",
         assets=String[],
     ),
+    repo="https://github.com/joehuchette/Justitia.jl/blob/{commit}{path}#L{line}",
     modules=[Justitia],
     pages=[
         "Home" => "index.md",
