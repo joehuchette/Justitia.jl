@@ -14,6 +14,7 @@ makedocs(;
         "User guide" => [
             "Interface" => "manual/interface.md",
             "Included implementations" => "manual/implementations.md",
+            "An example" => "manual/example.md",
         ],
     ],
 )

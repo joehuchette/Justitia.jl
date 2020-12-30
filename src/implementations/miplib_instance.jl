@@ -35,8 +35,8 @@ const MIPLIB_URL_PREFIX = "http://miplib.zib.de/WebData/instances/"
 
 function prep_instance!(instance::MIPLIBInstance)
     miplib_url = string(MIPLIB_URL_PREFIX, instance.instance_name, ".mps.gz")
-    run(`curl $(miplib_url) -o $(inst.tmp_file)`)
-    io = GZip.open(inst.tmp_file)
+    run(`curl $(miplib_url) -o $(instance.tmp_file)`)
+    io = GZip.open(instance.tmp_file)
     model_mps = MOI.FileFormats.MPS.Model()
     read!(io, model_mps)
     instance.model = model_mps

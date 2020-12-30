@@ -22,12 +22,13 @@ function optimize!(model::MOIModel)
 end
 
 function tear_down(model::MOIModel, ::Type{MILPResult})
-    primal_status = MOI.get(model, MOI.PrimalStatus())
-    num_vars = MOI.get(model, MOI.NumberOfVariables())
+    opt = model.opt
+    primal_status = MOI.get(opt, MOI.PrimalStatus())
+    num_vars = MOI.get(opt, MOI.NumberOfVariables())
     feas_point = (
         if primal_status == MOI.FEASIBLE_POINT
             [
-                MOI.get(model, MOI.VariablePrimal(), MOI.VariableIndex(i))
+                MOI.get(opt, MOI.VariablePrimal(), MOI.VariableIndex(i))
                 for i in 1:num_vars
             ]
         else
@@ -35,13 +36,13 @@ function tear_down(model::MOIModel, ::Type{MILPResult})
         end
     )
     return MILPResult(
-        termination_status = MOI.get(model, MOI.TerminationStatus()),
+        termination_status = MOI.get(opt, MOI.TerminationStatus()),
         primal_status = primal_status,
-        feas_point,
-        primal_bound = MOI.get(model, MOI.ObjectiveValue()),
-        dual_bound = MOI.get(model, MOI.ObjectiveBound()),
-        solve_time_sec = MOI.get(model, MOI.SolveTimeSec()),
-        node_count = MOI.get(model, MOI.NodeCount()),
-        simplex_iters = MOI.get(model, MOI.SimplexIterations()),
+        x = feas_point,
+        primal_bound = MOI.get(opt, MOI.ObjectiveValue()),
+        dual_bound = MOI.get(opt, MOI.ObjectiveBound()),
+        solve_time_sec = MOI.get(opt, MOI.SolveTime()),
+        node_count = MOI.get(opt, MOI.NodeCount()),
+        simplex_iters = MOI.get(opt, MOI.SimplexIterations()),
     )
 end

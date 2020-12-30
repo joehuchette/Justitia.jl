@@ -56,15 +56,26 @@ function CSVRecord(filename::String, ::Type{MILPResult})
     # Don't write feasible solution to CSV
     return CSVRecord(
         filename,
-        [string(field) for field in _MILP_CSV_RESULT_FIELDS],
+        vcat(
+            ["instance", "approach"],
+            [string(field) for field in _MILP_CSV_RESULT_FIELDS],
+        ),
     )
 end
 
-function record_result!(table::CSVRecord, result::MILPResult)
+function record_result!(
+    table::CSVRecord,
+    result::MILPResult,
+    instance_name::String,
+    approach_name::String,
+)
     println(
         table.fp,
         join(
-            [getfield(result, field) for field in _MILP_CSV_RESULT_FIELDS],
+            vcat(
+                [instance_name, approach_name],
+                [getfield(result, field) for field in _MILP_CSV_RESULT_FIELDS],
+            ),
             ",",
         ),
     )

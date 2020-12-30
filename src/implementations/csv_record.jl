@@ -8,7 +8,7 @@ location `filename` in the file system. Optionally, pass `headers` specifying
 the names of the fields to be recorded and the first line of the created .csv
 will include this header information.
 """
-struct CSVRecord <: AbstractResultTable
+mutable struct CSVRecord <: AbstractResultTable
     fp::IOStream
 
     function CSVRecord(
@@ -17,11 +17,11 @@ struct CSVRecord <: AbstractResultTable
     )
         fp = open(filename, "w+")
         if headers !== nothing
-            write(fp, join(headers, ","))
+            println(fp, join(headers, ","))
             flush(fp)
         end
         record = new(fp)
-        finalizer(record, r -> close(r.fp))
+        finalizer(r -> close(r.fp), record)
         return record
     end
 end
