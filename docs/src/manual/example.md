@@ -2,7 +2,7 @@
 CurrentModule = Justitia
 ```
 
-# [An example: Comparing two MILP solvers on MIPLIB instances]
+# An example: Comparing two MILP solvers on MIPLIB instances
 
 We offer a simple example showcasing how you can use Justitia. We will compare
 two MILP solvers (CPLEX and Gurobi) on a small selection of "easy" MIPLIB 2017
