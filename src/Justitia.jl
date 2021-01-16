@@ -1,6 +1,7 @@
 module Justitia
 
-import GZip, MathOptInterface
+import GZip
+import MathOptInterface
 const MOI = MathOptInterface
 
 include("interface.jl")
