@@ -20,7 +20,7 @@ function run_experiments!(
     instances::Dict{String},
     approaches::Dict{String},
     result_type::Type{<:AbstractResult},
-    config::Dict{String,Any}=Dict{String,Any}(),
+    config::Dict{String,Any} = Dict{String,Any}(),
 )
     for (instance_name, instance) in instances
         prep_instance!(instance)

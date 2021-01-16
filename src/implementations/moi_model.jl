@@ -28,8 +28,8 @@ function tear_down(model::MOIModel, ::Type{MILPResult})
     feas_point = (
         if primal_status == MOI.FEASIBLE_POINT
             [
-                MOI.get(opt, MOI.VariablePrimal(), MOI.VariableIndex(i))
-                for i in 1:num_vars
+                MOI.get(opt, MOI.VariablePrimal(), MOI.VariableIndex(i)) for
+                i in 1:num_vars
             ]
         else
             nothing
