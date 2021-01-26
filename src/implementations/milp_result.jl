@@ -30,12 +30,12 @@ correct headers:
 
     CSVRecord(filename::String, ::Type{MILPResult})
 """
-Base.@kwdef struct MILPResult <: AbstractResult
+Base.@kwdef mutable struct MILPResult <: AbstractResult
     termination_status::MOI.TerminationStatusCode
     primal_status::MOI.ResultStatusCode
     x::Union{Nothing,Vector{Float64}} = nothing
     primal_bound::Float64
-    dual_bound::Float64
+    dual_bound::Float64 = NaN
     solve_time_sec::Float64
     node_count::Int = -1
     simplex_iters::Int = -1

@@ -35,14 +35,27 @@ function tear_down(model::MOIModel, ::Type{MILPResult})
             nothing
         end
     )
-    return MILPResult(
+    result = MILPResult(
         termination_status = MOI.get(opt, MOI.TerminationStatus()),
         primal_status = primal_status,
         x = feas_point,
         primal_bound = MOI.get(opt, MOI.ObjectiveValue()),
-        dual_bound = MOI.get(opt, MOI.ObjectiveBound()),
         solve_time_sec = MOI.get(opt, MOI.SolveTime()),
-        node_count = MOI.get(opt, MOI.NodeCount()),
-        simplex_iters = MOI.get(opt, MOI.SimplexIterations()),
     )
+    try
+        dual_bound = MOI.get(opt, MOI.ObjectiveBound())
+        result.dual_bound = dual_bound
+    catch ArgumentError
+    end
+    try
+        node_count = MOI.get(opt, MOI.NodeCount())
+        result.node_count = node_count
+    catch ArgumentError
+    end
+    try
+        simplex_iters = MOI.get(opt, MOI.SimplexIterations())
+        result.simplex_iters = simplex_iters
+    catch ArgumentError
+    end
+    return result
 end

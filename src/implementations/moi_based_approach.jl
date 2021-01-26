@@ -44,7 +44,6 @@ function build_model(
     config::Dict{String,Any} = Dict{String,Any}(),
 ) where {T<:MOI.AbstractOptimizer}
     factory = get_factory(approach)
-    # factory = () -> approach.optimizer_factory(inst, config)
     model = MOI.instantiate(factory)
     @assert model isa T
     MOI.copy_to(model, get_moi_model(inst), copy_names = false)
