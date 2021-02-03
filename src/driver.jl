@@ -23,6 +23,7 @@ function run_experiments!(
     config::Dict{String,Any} = Dict{String,Any}(),
 )
     for (instance_name, instance) in instances
+        @info "Prepping instance $instance_name"
         prep_instance!(instance)
         for (approach_name, approach) in approaches
             @info "Current experiment: $instance_name with $approach_name"
