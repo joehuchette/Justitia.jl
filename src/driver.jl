@@ -25,6 +25,7 @@ function run_experiments!(
     for (instance_name, instance) in instances
         prep_instance!(instance)
         for (approach_name, approach) in approaches
+            @info "Current experiment: $instance_name with $approach_name"
             model = build_model(approach, instance, config)
             optimize!(model)
             result = tear_down(model, result_type)
