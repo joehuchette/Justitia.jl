@@ -76,7 +76,7 @@ Solve the instance using the approach specified by `model`.
 function optimize! end
 
 """
-    tear_down(model::AbstractModel, T::Type{<:AbstractResult}))
+    tear_down(model::AbstractModel, instance::AbstractInstance, T::Type{<:AbstractResult}))
 
 Record the results of in individual experiment of a particular approach on a
 particular instance. The results will be stored in an object of type `T`.

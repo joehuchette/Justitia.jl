@@ -10,7 +10,7 @@ Some pieces of the [functional interface](@ref functional_interface) are
 implemented:
 
     optimize!(model::MOIModel)
-    tear_down(model::MOIModel, ::Type{MILPResult})
+    tear_down(model::MOIModel, instance::AbstractInstance, ::Type{MILPResult})
 """
 struct MOIModel{T<:MOI.AbstractOptimizer} <: AbstractModel
     opt::T
@@ -21,7 +21,7 @@ function optimize!(model::MOIModel)
     return nothing
 end
 
-function tear_down(model::MOIModel, ::Type{MILPResult})
+function tear_down(model::MOIModel, instance::AbstractInstance, ::Type{MILPResult})
     opt = model.opt
     result = MILPResult(
         termination_status = MOI.get(opt, MOI.TerminationStatus()),
