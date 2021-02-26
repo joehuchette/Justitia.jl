@@ -40,12 +40,13 @@ function run_experiments!(
                 record_result!(results_table, result, instance_name, approach_name)
             end
         else
-            @info "Current experiment: $instance_name with $approach_name"
-            approach = approaches[approach_name]
-            model = build_model(approach, instance, config)
-            optimize!(model)
-            result = tear_down(model, instance, result_type)
-            record_result!(results_table, result, instance_name, approach_name)
+            for (approach_name, approach) in approaches
+                @info "Current experiment: $instance_name with $approach_name"
+                model = build_model(approach, instance, config)
+                optimize!(model)
+                result = tear_down(model, instance, result_type)
+                record_result!(results_table, result, instance_name, approach_name)
+            end
         end
     end
     return nothing
