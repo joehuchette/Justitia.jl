@@ -22,7 +22,7 @@ function run_experiments!(
     results_table::AbstractResultTable,
     instances::Dict{String},
     approaches::Dict{String},
-    result_type::Type{<:AbstractResult};
+    result_type::Type{<:AbstractResult},
     config::Dict{String} = Dict{String,Any}();
     parallelize::Bool = true,
 )
