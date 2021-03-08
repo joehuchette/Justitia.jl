@@ -22,8 +22,8 @@ function run_experiments!(
     results_table::AbstractResultTable,
     instances::Dict{String},
     approaches::Dict{String},
-    result_type::Type{<:AbstractResult},
-    config::Dict{String} = Dict{String,Any}();
+    result_type::Type{<:AbstractResult};
+    config::Dict{String} = Dict{String,Any}(),
     parallelize::Bool = true,
 )
     approach_keys = collect(keys(approaches))
